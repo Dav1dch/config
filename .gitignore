@@ -23,7 +23,7 @@ iterm2/
 lazygit
 matplotlib/
 neofetch/
-nvim
+!nvim/
 nvim-vscode/
 pip/
 ranger
