@@ -1,8 +1,36 @@
 /*
 !.gitignore
 
-/.config/*
-!/.config/nvim/
+!/.config/
+/.config/.V2rayU/
+/.config/.ShadowsocksX-NG/
+/.config/clash/
+/.config/pip/
+/.config/coc/
+/.config/filezilla/
+
+.DS_Store
+.ShadowsocksX-NG/
+.V2rayU/
+.zprofile/
+clash/
+coc/
+filezilla/
+fish/
+gtk-2.0/
+htop/
+iterm2/
+lazygit
+matplotlib/
+neofetch/
+nvim
+nvim-vscode/
+pip/
+ranger
+raycast/
+ros.org/
+scripts
+zellij/
 
 
 !.yabairc
