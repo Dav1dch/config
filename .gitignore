@@ -1,6 +1,9 @@
 /*
 !.gitignore
-!.config/
+
+/.config/*
+!/.config/nvim/
+
 
 !.yabairc
 
