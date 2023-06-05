@@ -148,6 +148,9 @@ alt - 7 : yabai -m space --focus 7
 alt - 8 : yabai -m space --focus 8
 alt - 9 : yabai -m space --focus 9
 
+alt - r : yabai -m space --rotate 270
+shift + alt - r: yabai -m space --rotate 90
+
 # Resize windows
 shift + alt - h : yabai -m window --resize left:-50:0; \
                   yabai -m window --resize right:-50:0
