@@ -24,12 +24,13 @@ lazygit
 matplotlib/
 neofetch/
 !nvim/
+!snippets/
+!scripts/
 nvim-vscode/
 pip/
 ranger
 raycast/
 ros.org/
-scripts
 zellij/
 
 
