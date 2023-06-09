@@ -17,3 +17,19 @@ snippet une "Description" using namespace
 using namespace Eigen;
 endsnippet
 
+snippet ine "include Eigen"
+#include<Eigen/Core>
+#include<Eigen/Dense>
+endsnippet
+snippet steadynow "time now" 
+chrono::steady_clock::time_point ${0} = chrono::steady_clock::now();
+endsnippet
+snippet steadyuse "duration" 
+chrono::duration<double> time_used =
+chrono::duration_cast<chrono::duration<double>>(${1:t2} - ${0:t1});
+endsnippet
+snippet cend "cout endl"
+cout << ${0:content} << endl;
+
+endsnippet
+
