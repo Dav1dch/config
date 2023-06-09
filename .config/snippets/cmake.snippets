@@ -1,0 +1,18 @@
+snippet cdefault "Cmake"
+cmake_minimum_required(VERSION 3.23)
+project(${2:projectName})
+
+set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_CXX_FLAGS "-std=c++14 -O3")
+
+add_executable(${1:execName} ${0:execName}.cpp)
+
+endsnippet
+
+snippet fpac "find_package" 
+
+find_package(${3:packName} REQUIRED)
+include_directories(${${2:packName}_INCLUDE_DIRS})
+target_link_libraries(${1:execName} ${})
+
+endsnippet
