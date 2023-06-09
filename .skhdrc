@@ -107,7 +107,7 @@
 
 # open terminal, blazingly fast compared to iTerm/Hyper
 
-cmd - return : /Users/david/.config/scripts/open_iterm2.sh
+shift + cmd - return : /Users/david/.config/scripts/open_iterm2.sh
 cmd - e: /Applications/Microsoft\ Edge.app/Contents/MacOS/Microsoft\ Edge --single-instance -d
 
 ctrl + alt - space : yabai -m config --space 5 layout float
