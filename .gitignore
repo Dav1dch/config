@@ -35,6 +35,7 @@ zellij/
 
 
 !.yabairc
+!.tmux.conf
 
 !.skhdrc
 !.zshrc
