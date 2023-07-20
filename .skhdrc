@@ -108,16 +108,20 @@
 # open terminal, blazingly fast compared to iTerm/Hyper
 
 shift + cmd - return : /Users/david/.config/scripts/open_iterm2.sh
-cmd - e: /Applications/Microsoft\ Edge.app/Contents/MacOS/Microsoft\ Edge --single-instance -d
+# cmd - e: /Applications/Microsoft\ Edge.app/Contents/MacOS/Microsoft\ Edge --single-instance -d
 
-ctrl + alt - space : yabai -m config --space 5 layout float
-shift + alt - space : yabai -m config --space 5 layout bsp
+alt - t: yabai -m config --space mouse layout stack
+shift + alt - t: yabai -m config --space mouse layout bsp
+
+cmd - e : yabai -m config --space mouse layout float
 
 # Navigation
 alt - h : yabai -m window --focus west
-alt - j : yabai -m window --focus south
-alt - k : yabai -m window --focus north
+# alt - j : yabai -m window --focus south
+# alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
+alt - j : if [ "$(yabai -m query --spaces --space | jq -r '.type')" = "stack" ]; then (yabai -m window --focus stack.next || yabai -m window --focus stack.first); else yabai -m window --focus next || yabai -m window --focus first; fi
+alt - k : if [ "$(yabai -m query --spaces --space | jq -r '.type')" = "stack" ]; then (yabai -m window --focus stack.prev || yabai -m window --focus stack.last); else yabai -m window --focus prev || yabai -m window --focus last; fi
 
 # Moving windows
 ctrl + alt - h : yabai -m window --warp west
@@ -152,13 +156,13 @@ alt - r : yabai -m space --rotate 270
 shift + alt - r: yabai -m space --rotate 90
 
 # Resize windows
-shift + alt - h : yabai -m window --resize left:-50:0; \
-                  yabai -m window --resize right:-50:0
-shift + alt- j : yabai -m window --resize bottom:0:50; \
-                  yabai -m window --resize top:0:50
-shift + alt - k : yabai -m window --resize top:0:-50; \
-                  yabai -m window --resize bottom:0:-50
-shift + alt - l : yabai -m window --resize right:50:0; \
+shift + cmd - h : yabai -m window --resize left:-50:0; \
+               yabai -m window --resize right:-50:0
+shift + cmd- j : yabai -m window --resize bottom:0:50; \
+               yabai -m window --resize top:0:50
+shift + cmd - k : yabai -m window --resize top:0:-50; \
+               yabai -m window --resize bottom:0:-50
+shift + cmd - l : yabai -m window --resize right:50:0; \
                   yabai -m window --resize left:50:0
 
 # Equalize size of windows
