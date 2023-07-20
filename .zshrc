@@ -109,6 +109,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lg="lazygit"
+alias tx="tmux"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 bindkey '`' autosuggest-accept
 
