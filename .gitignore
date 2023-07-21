@@ -26,6 +26,7 @@ neofetch/
 !nvim/
 !snippets/
 !scripts/
+!tmux/
 nvim-vscode/
 pip/
 ranger
