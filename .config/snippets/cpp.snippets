@@ -1,4 +1,4 @@
-snippet imain "Description" cpp main fuction
+snippet imain 
 #include <iostream>
 
 using namespace std;
@@ -10,18 +10,18 @@ int main(int argc, char **argv){
 	return 0;
 }
 endsnippet
-snippet uns "Description" using namespace
+snippet uns 
 using namespace std;
 endsnippet
-snippet une "Description" using namespace
+snippet une 
 using namespace Eigen;
 endsnippet
 
-snippet ine "include Eigen"
+snippet ine 
 #include<Eigen/Core>
 #include<Eigen/Dense>
 endsnippet
-snippet steadynow "time now" 
+snippet steadynow  
 chrono::steady_clock::time_point ${0} = chrono::steady_clock::now();
 endsnippet
 snippet steadyuse "duration" 
@@ -29,7 +29,6 @@ chrono::duration<double> time_used =
 chrono::duration_cast<chrono::duration<double>>(${1:t2} - ${0:t1});
 endsnippet
 snippet cend "cout endl"
-cout << ${0:content} << endl;
-
+std::cout << ${0:content} << std::endl;
 endsnippet
 

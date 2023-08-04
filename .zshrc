@@ -134,6 +134,8 @@ unset __conda_setup
 #
 export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
 export PATH="/opt/homebrew/opt/pyqt@5/bin:$PATH"
+export PATH="/usr/local/texlive/2023basic/bin/universal-darwin/:$PATH"
+# export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;export ALL_PROXY=socks5://127.0.0.1:1080
 
 fortune | cowsay
 # export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.ustc.edu.cn/brew.git"
