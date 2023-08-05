@@ -8,6 +8,7 @@
 /.config/pip/
 /.config/coc/
 /.config/filezilla/
+!/.config/nvim
 
 .DS_Store
 .ShadowsocksX-NG/
