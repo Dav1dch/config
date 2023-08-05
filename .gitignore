@@ -8,7 +8,7 @@
 /.config/pip/
 /.config/coc/
 /.config/filezilla/
-!/.config/nvim
+!/.config/nvim/
 
 .DS_Store
 .ShadowsocksX-NG/
@@ -24,10 +24,11 @@ iterm2/
 lazygit
 matplotlib/
 neofetch/
-!nvim/
 !snippets/
 !scripts/
 !tmux/
+nvim_bak/
+nvim_
 nvim-vscode/
 pip/
 ranger
@@ -36,6 +37,7 @@ ros.org/
 zellij/
 
 
+!nvim/
 !.yabairc
 !.tmux.conf
 
