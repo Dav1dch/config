@@ -3,28 +3,28 @@ if not vim.loop.fs_stat(lazypath) then
   -- bootstrap lazy.nvim
   -- stylua: ignore
   vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", lazypath })
+    "--branch=stable",
+    lazypath })
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
-  require("plugins.color"),
-  require("plugins.p-barbar"),
-  require("plugins.p-tree"),
-  require("plugins.p-treesitter"),
-  require("plugins.p-cmp"),
-  require("plugins.p-snip"),
-  require("plugins.p-mason"),
-  require("plugins.p-lsp"),
-  require("plugins.p-indent"),
-  require("plugins.p-bookmarks"),
-  require("plugins.p-autopairs"),
-  require("plugins.p-surround"),
-  require("plugins.p-index"),
-  require("plugins.p-flash"),
-  require("plugins.p-lualine"),
-  require("plugins.p-noice"),
-  require("plugins.p-telescope"),
+    require("plugins.p-mason"),
+    require("plugins.p-lsp"),
+    --{ import = "plugins.p-noice" },
+    require("plugins.p-comment"),
+    require("plugins.color"),
+    require("plugins.p-barbar"),
+    require("plugins.p-tree"),
+    require("plugins.p-treesitter"),
+    require("plugins.p-cmp"),
+    require("plugins.p-snip"),
+    require("plugins.p-indent"),
+    require("plugins.p-bookmarks"),
+    require("plugins.p-autopairs"),
+    require("plugins.p-surround"),
+    require("plugins.p-index"),
+    require("plugins.p-flash"),
+    require("plugins.p-lualine"),
+    require("plugins.p-telescope"),
 })
-
-require("plugins.map")

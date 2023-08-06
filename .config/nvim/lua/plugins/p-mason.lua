@@ -1,16 +1,22 @@
-return{
-	"williamboman/mason.nvim",
+return {
 	"williamboman/mason-lspconfig.nvim",
-	config = function()
-require("mason").setup()
-
-require("mason-lspconfig").setup({
-	ensure_installed = {
-		'lua_ls'
-
+	lazy = false,
+	dependencies = {
+		{ "williamboman/mason.nvim", build = ":MasonUpdate", },
 	},
-	automatic_installation = true,
-
-})
-end
+	config = function()
+		require("mason").setup({
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗"
+				}
+			}
+		})
+		require("mason-lspconfig").setup({
+			ensure_installed = { "lua_ls", "pyright",},
+			automatic_installation = true,
+		})
+	end
 }

@@ -1,116 +1,204 @@
-return {
+local M = {}
+
+M = {
+  {
+    'weilbith/nvim-code-action-menu',
+    cmd = 'CodeActionMenu',
+  },
+  {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
+    dependencies = {
+      {
+        "folke/trouble.nvim",
+        opts = {
+          use_diagnostic_signs = true,
+          action_keys = {
+            close = "<esc>",
+            previous = "u",
+            next = "e"
+          },
+        },
+      },
+      { 'neovim/nvim-lspconfig' },
+      {
+        'williamboman/mason.nvim',
+        build = function()
+          vim.cmd([[MasonInstall]])
+        end,
+      },
+      { 'williamboman/mason-lspconfig.nvim' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      {
+        'j-hui/fidget.nvim',
+        tag = "legacy"
+      },
+      "folke/neodev.nvim",
+      "ray-x/lsp_signature.nvim",
+      {
+        "lvimuser/lsp-inlayhints.nvim",
+        branch = "anticonceal",
+      },
+      -- "mjlbach/lsp_signature.nvim",
+    },
+
+    config = function()
+      local lsp = require('lsp-zero').preset({})
+      M.lsp = lsp
+
+      lsp.ensure_installed({
+        'tsserver',
+        'lua_ls',
+        'pylsp',
+        'clangd'
+
+      })
 
 
-	{
-		'numToStr/Comment.nvim',
-		config = function()
-			require('Comment').setup()
-		end
-	},
-	{
-		'neovim/nvim-lspconfig',
-		config = function()
-			--
-			-- Set up lspconfig.
-			local capabilities = require('cmp_nvim_lsp').default_capabilities()
-			-- Setup language servers.
-			local lspconfig = require('lspconfig')
-			lspconfig.pyright.setup {}
-			lspconfig.tsserver.setup {}
-			lspconfig.lua_ls.setup {
-				capabilities = capabilities,
-				settings = {
-					Lua = {
-						runtime = {
-							-- Tell the language server which version of Lua you're using
-							-- (most likely LuaJIT in the case of Neovim)
-							version = 'LuaJIT',
-						},
-						diagnostics = {
-							-- Get the language server to recognize the `vim` global
-							globals = {
-								'vim',
-								'require'
-							},
-						},
-						workspace = {
-							-- Make the server aware of Neovim runtime files
-							library = vim.api.nvim_get_runtime_file("", true),
-							checkThirdParty = false,
+      lsp.on_attach(function(client, bufnr)
+        lsp.default_keymaps({ buffer = bufnr })
+        client.server_capabilities.semanticTokensProvider = nil
+        -- require("config.plugins.autocomplete").configfunc()
+        vim.diagnostic.config({
+          severity_sort = true,
+          underline = true,
+          signs = true,
+          virtual_text = true,
+          update_in_insert = false,
+          float = true,
+        })
+      end)
 
-						},
-						-- Do not send telemetry data containing a randomized but unique identifier
-						telemetry = {
-							enable = false,
-						},
-					},
-				},
-			}
+      lsp.set_sign_icons({
+        error = '✘',
+        warn = '▲',
+        hint = '⚑',
+        info = '»'
+      })
 
-			lspconfig.clangd.setup {
-				capabilities = capabilities,
-				settings = {
-					['filetypes'] = { "c", "cpp", "objc", "objcpp", "cuda", "proto", "cc" }
-				}
+      lsp.set_server_config({
+        on_init = function(client)
+          client.server_capabilities.semanticTokensProvider = nil
+        end,
+      })
 
-			}
+      lsp.format_on_save({
+        format_opts = {
+          -- async = false,
+          -- timeout_ms = 10000,
+        },
+      })
 
-			lspconfig.rust_analyzer.setup {
-				-- Server-specific settings. See `:help lspconfig-setup`
-				capabilities = capabilities,
-				settings = {
-					['rust-analyzer'] = {},
-				},
-			}
+
+      local lspconfig = require('lspconfig')
+
+      require("config.lsp.lua").setup(lspconfig, lsp)
+      require("config.lsp.pylsp").setup(lspconfig, lsp)
+      require("config.lsp.clangd").setup(lspconfig, lsp)
+
+      lsp.setup()
+      require("fidget").setup({})
+
+      local lsp_defaults = lspconfig.util.default_config
+      lsp_defaults.capabilities = vim.tbl_deep_extend(
+        'force',
+        lsp_defaults.capabilities,
+        require('cmp_nvim_lsp').default_capabilities()
+      )
 
 
 
-			-- Global mappings.
-			-- See `:help vim.diagnostic.*` for documentation on any of the below functions
-			vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-			vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-			vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-			vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+      local format_on_save_filetypes = {
+        dart = true,
+        json = true,
+        go = true,
+        lua = true,
+        python = true,
+        c = true,
+        cc = true,
+        cpp = true,
+        h = true,
+        hpp = true,
+      }
 
-			-- Use LspAttach autocommand to only map the following keys
-			-- after the language server attaches to the current buffer
-			vim.api.nvim_create_autocmd('LspAttach', {
-				group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-				callback = function(ev)
-					-- Enable completion triggered by <c-x><c-o>
-					vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-
-					-- Buffer local mappings.
-					-- See `:help vim.lsp.*` for documentation on any of the below functions
-					local opts = { buffer = ev.buf }
-					vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-					vim.keymap.set('n', 'gd', ':Telescope lsp_definitions<CR>', opts)
-					vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-					vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-					vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-					vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
-					vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
-					vim.keymap.set('n', '<leader>wl', function()
-						print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-					end, opts)
-					vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
-					vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-					vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
-					vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-					vim.keymap.set('n', '<leader>d', ":Telescope lsp_document_symbols<CR>", opts)
-					vim.keymap.set('n', '<leader>f', function()
-						vim.lsp.buf.format { async = true }
-					end, opts)
-				end,
-			})
-
-			vim.api.nvim_create_autocmd('BufWritePre', {
-				group = vim.api.nvim_create_augroup('LspFormatting', { clear = true }),
-				buffer = bufnr,
-				callback = function()
-					vim.lsp.buf.format()
-				end
-			})
-		end
-	}
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*",
+        callback = function()
+          if format_on_save_filetypes[vim.bo.filetype] then
+            local lineno = vim.api.nvim_win_get_cursor(0)
+            vim.lsp.buf.format({ async = false })
+            vim.api.nvim_win_set_cursor(0, lineno)
+          end
+        end,
+      })
+    end
+  },
 }
+
+return M
+
+-- { 'williamboman/mason-lspconfig.nvim' },
+-- { 'hrsh7th/cmp-nvim-lsp' },
+
+
+-- {
+--   "neovim/nvim-lspconfig",
+--   config = function()
+--     --
+--     -- Set up lspconfig.
+--     local capabilities = require("cmp_nvim_lsp").default_capabilities()
+--     -- Setup language servers.
+--     local lspconfig = require("lspconfig")
+--     -- lspconfig.jedi_language_server.setup {
+--     --   capabilities = capabilities,
+--     -- }
+--     lspconfig.pyright.setup({
+--       capabilities = capabilities,
+--     })
+--     lspconfig.tsserver.setup({})
+--     lspconfig.lua_ls.setup({
+--       capabilities = capabilities,
+--       settings = {
+--         Lua = {
+--           runtime = {
+--             -- Tell the language server which version of Lua you're using
+--             -- (most likely LuaJIT in the case of Neovim)
+--             version = "LuaJIT",
+--           },
+--           diagnostics = {
+--             -- Get the language server to recognize the `vim` global
+--             globals = {
+--               "vim",
+--               "require",
+--             },
+--           },
+--           workspace = {
+--             -- Make the server aware of Neovim runtime files
+--             library = vim.api.nvim_get_runtime_file("", true),
+--             checkThirdParty = false,
+--           },
+--           -- Do not send telemetry data containing a randomized but unique identifier
+--           telemetry = {
+--             enable = false,
+--           },
+--         },
+--       },
+--     })
+--
+--     lspconfig.clangd.setup({
+--       capabilities = capabilities,
+--       settings = {
+--         ["filetypes"] = { "c", "cpp", "objc", "objcpp", "cuda", "proto", "cc" },
+--       },
+--     })
+--
+--     lspconfig.rust_analyzer.setup({
+--       -- Server-specific settings. See `:help lspconfig-setup`
+--       capabilities = capabilities,
+--       settings = {
+--         ["rust-analyzer"] = {},
+--       },
+--     })
+--   end,
+-- },
+-- }

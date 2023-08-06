@@ -1,7 +1,6 @@
 return {
   {
-    "yaocccc/nvim-hlchunk",
-    -- "shellRaining/hlchunk.nvim",
+    "shellRaining/hlchunk.nvim",
     init = function()
       vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" },
         { pattern = "*", command = "EnableHL", })
@@ -24,6 +23,9 @@ return {
         line_num = {
           enable = true,
           use_treesitter = true,
+          style = {
+            "#61ffca"
+          }
 
         },
       })

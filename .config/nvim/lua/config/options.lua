@@ -85,7 +85,7 @@ vim.g.UltiSnipsSnippetDirectories = {
 local opts = { noremap = true, silent = true }
 
 vim.api.nvim_set_keymap("n", "<leader><CR>", ":luafile /Users/david/.config/nvim/init.lua<CR>", opts)
-vim.g.python3_host_prog = '/opt/anaconda3/envs/dl/bin/python'
+-- vim.g.python3_host_prog = '/opt/anaconda3/envs/dl/bin/python'
 vim.opt.guicursor = "n:hor100,i:ver25"
 
 -- vim.cmd [[:highlight Cursor gui=NONE guifg=bg guibg=fg]]
