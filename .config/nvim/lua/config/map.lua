@@ -22,6 +22,7 @@ vim.keymap.set('n', 't3', ':BufferGoto 3<CR>', {})
 vim.keymap.set('n', 't4', ':BufferGoto 4<CR>', {})
 vim.keymap.set('n', 't5', ':BufferGoto 5<CR>', {})
 vim.keymap.set('n', 't6', ':BufferGoto 6<CR>', {})
+vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', {})
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<leader><CR>", ":luafile /Users/david/.config/nvim/init.lua<CR>", opts)
@@ -63,4 +64,3 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, opts)
   end,
 })
-

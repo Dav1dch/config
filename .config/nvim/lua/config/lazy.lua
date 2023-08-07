@@ -13,6 +13,7 @@ require("lazy").setup({
   require("plugins.p-mason"),
   require("plugins.p-lsp"),
   require("plugins.p-treesitter"),
+  require("plugins.p-lazygit"),
   --{ import = "plugins.p-noice" },
   require("plugins.p-comment"),
   require("plugins.color"),
