@@ -108,6 +108,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias js="joshuto"
 alias lg="lazygit"
 alias tx="tmux"
 alias txa="tmux attach"
