@@ -23,6 +23,17 @@ vim.keymap.set('n', 't4', ':BufferGoto 4<CR>', {})
 vim.keymap.set('n', 't5', ':BufferGoto 5<CR>', {})
 vim.keymap.set('n', 't6', ':BufferGoto 6<CR>', {})
 vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', {})
+vim.keymap.set('n', '<c-e>', ':Joshuto<CR>')
+
+vim.api.nvim_create_autocmd("StdinReadPre", { pattern = "*", command = "let s:std_in=1" })
+vim.api.nvim_create_autocmd("VimEnter",
+  {
+    pattern = "*",
+    command =
+    "if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | execute 'Joshuto'",
+    -- "if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | execute 'Joshuto' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif",
+  })
+
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<leader><CR>", ":luafile /Users/david/.config/nvim/init.lua<CR>", opts)
