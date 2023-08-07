@@ -15,7 +15,7 @@ require("lazy").setup({
   require("plugins.p-treesitter"),
   require("plugins.p-lazygit"),
   require("plugins.p-joshuto"),
-  --{ import = "plugins.p-noice" },
+  require("plugins.p-noice"),
   require("plugins.p-comment"),
   require("plugins.color"),
   require("plugins.p-barbar"),

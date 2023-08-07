@@ -60,16 +60,17 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.inccommand = 'split'
 vim.o.completeopt = 'longest,noinsert,menuone,noselect,preview'
 vim.o.completeopt = 'menuone,noinsert,noselect,preview'
-vim.o.lazyredraw = true
+vim.o.lazyredraw = false
 -- -- vim.o.visualbell = true
 -- vim.o.colorcolumn = '100'
 vim.o.updatetime = 100
 vim.o.virtualedit = 'block'
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md", command = "setlocal spell", })
-vim.api.nvim_create_autocmd("BufEnter", { pattern = "*", command = "silent! lcd %:p:h", })
 
+-- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md", command = "setlocal spell", })
+-- vim.api.nvim_create_autocmd("BufEnter", { pattern = "*", command = "silent! lcd %:p:h", })
+--
 vim.cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
-
+--
 
 
 
