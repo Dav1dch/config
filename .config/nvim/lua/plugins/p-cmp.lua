@@ -92,7 +92,7 @@ return {
       }, {
         { name = 'buffer' },
         { name = 'path' },
-        -- { name = 'nvim_lsp_signature_help' },
+        { name = 'nvim_lsp_signature_help' },
       })
     })
     -- Set configuration for specific filetype.

@@ -13,6 +13,7 @@ return {
           plugins = {
             yapf = { enabled = false },
             rope_completion = { enabled = false },
+            pycodestyle = { enabled = false },
             pylint = { enabled = false },
             preload = { enabled = false },
             mccabe = { enabled = false },
