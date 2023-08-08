@@ -9,6 +9,7 @@
 /.config/coc/
 /.config/filezilla/
 !/.config/nvim/
+!joshuto
 
 .DS_Store
 .ShadowsocksX-NG/

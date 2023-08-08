@@ -34,8 +34,8 @@ return {
           height = 0.9,
         },
         color_devicons = true,
-        prompt_prefix = "🔍 ",
-        selection_caret = " ",
+        -- prompt_prefix = "🔍 ",
+        -- selection_caret = " ",
         path_display = { "truncate" },
       },
       pickers = {
