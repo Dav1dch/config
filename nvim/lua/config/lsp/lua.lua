@@ -1,16 +1,21 @@
 return {
   setup = function(lspconfig, lsp)
-    require("neodev").setup({
-      lspconfig = true,
-      override = function()
-      end
-    })
-    lspconfig.clangd.setup({
+    -- require("neodev").setup({
+    --   lspconfig = true,
+    --   override = function()
+    --   end
+    -- })
+    lspconfig.lua_ls.setup({
       on_attach = function()
       end,
       settings = {
-        clangd = {
-          ["filetypes"] = { "c", "cpp", "objc", "objcpp", "cuda", "proto", "cc" },
+        Lua = {
+          diagnostics = {
+            globals = {
+              'vim',
+              'require'
+            },
+          },
           workspace = {
             checkThirdParty = false,
           },

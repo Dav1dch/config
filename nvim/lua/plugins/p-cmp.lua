@@ -44,7 +44,6 @@ return {
       formatting = {
         fields = { "kind", "abbr", "menu" },
         maxwidth = 30,
-        maxheight = 10,
 
         format = function(entry, vim_item)
           local kind = lspkind.cmp_format({
