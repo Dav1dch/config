@@ -12,6 +12,7 @@ require("lazy").setup({
   require("plugins.p-cmp"),
   require("plugins.p-mason"),
   require("plugins.p-lsp"),
+  require("plugins.p-null-ls"),
   require("plugins.p-treesitter"),
   require("plugins.p-lazygit"),
   require("plugins.p-joshuto"),
