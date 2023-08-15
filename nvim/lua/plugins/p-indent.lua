@@ -8,9 +8,13 @@ return {
         chunk = {
           enable = true,
           use_treesitter = true,
+
           style = {
-            { fg = "#806d9c" },
+            "#61ffca"
           },
+          -- style = {
+          --   { fg = "#806d9c" },
+          -- },
         },
         indent = {
           enable = false,

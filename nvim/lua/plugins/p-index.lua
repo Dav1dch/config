@@ -16,4 +16,11 @@ return {
       require("colorizer").setup()
     end,
   },
+  {
+    'lvimuser/lsp-inlayhints.nvim',
+    config = function()
+      require('lsp-inlayhints').setup()
+    end,
+
+  }
 }
