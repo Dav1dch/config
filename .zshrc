@@ -113,6 +113,7 @@ alias lg="lazygit"
 alias tx="tmux"
 alias txa="tmux attach"
 alias tt="tmux attach -t"
+alias exvpn="export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;export ALL_PROXY=socks5://127.0.0.1:1080"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 bindkey '`' autosuggest-accept
 
