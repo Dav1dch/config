@@ -20,6 +20,7 @@ opt.shiftwidth = 2
 opt.expandtab = true
 opt.ignorecase = true
 opt.smartcase = true
+opt.smartindent = true
 opt.swapfile = false
 opt.autoread = true
 vim.bo.autoread = true

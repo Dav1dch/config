@@ -48,7 +48,6 @@ M = {
       lsp.ensure_installed({
         'tsserver',
         'lua_ls',
-        'clangd'
 
       })
 

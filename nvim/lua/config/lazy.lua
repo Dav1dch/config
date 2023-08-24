@@ -21,7 +21,7 @@ require("lazy").setup({
   require("plugins.color"),
   require("plugins.p-barbar"),
   -- require("plugins.p-tree"),
-  require("plugins.p-snip"),
+  -- require("plugins.p-snip"),
   require("plugins.p-indent"),
   require("plugins.p-bookmarks"),
   require("plugins.p-autopairs"),

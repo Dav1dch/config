@@ -5,6 +5,7 @@ return {
       end,
       settings = {
         clangd = {
+          cmd = { "clangd" },
           ["filetypes"] = { "c", "cpp", "objc", "objcpp", "cuda", "proto", "cc" },
           workspace = {
             checkThirdParty = false,
