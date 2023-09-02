@@ -47,9 +47,9 @@ return {
     local cmp = require 'cmp'
     local lspkind = require('lspkind')
     local luasnip = require('luasnip')
-    require("luasnip.loaders.from_snipmate").load()
+    require("luasnip.loaders.from_snipmate").lazy_load()
     -- specify the full path...
-    require("luasnip.loaders.from_snipmate").lazy_load({ paths = "../snippets" })
+    -- require("luasnip.loaders.from_snipmate").lazy_load({ paths = "../snippets" })
 
 
     cmp.setup({
