@@ -9,7 +9,9 @@ vim.keymap.set('n', 'L', '$')
 
 
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<c-f>', builtin.find_files, {})
+-- vim.keymap.set('n', '<c-f>', ":Telescope find_files cwd='.FindRootDirectory().'/<cr>")
+vim.keymap.set('n', '<c-f>',
+  ":lua require('telescope.builtin').find_files(vim.fn.systemlist('git rev-parse --show-toplevel'))<cr>")
 vim.keymap.set('n', '<c-g>', builtin.live_grep, {})
 vim.keymap.set('n', '<c-b>', builtin.buffers, {})
 vim.keymap.set('n', '<c-h>', builtin.help_tags, {})

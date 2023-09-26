@@ -1,6 +1,16 @@
 return {
 
-  { "mhinz/vim-startify" },
+  {
+    'glepnir/dashboard-nvim',
+    event = 'VimEnter',
+    config = function()
+      require('dashboard').setup {
+        -- config
+      }
+    end,
+    dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+  },
+  --{ "mhinz/vim-startify" },
   { "p00f/nvim-ts-rainbow" },
   { "lewis6991/gitsigns.nvim" },
   {

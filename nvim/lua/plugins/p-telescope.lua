@@ -3,6 +3,7 @@ return {
   -- tag = '0.1.1',
   dependencies = {
     "nvim-lua/plenary.nvim",
+    "airblade/vim-rooter",
     {
       "LukasPietzschmann/telescope-tabs",
       config = function()

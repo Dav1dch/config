@@ -75,7 +75,7 @@ vim.cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
 
 
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = { Error = "⤫", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -90,5 +90,8 @@ vim.api.nvim_set_keymap("n", "<leader><CR>", ":luafile /Users/david/.config/nvim
 vim.g.python3_host_prog = '/opt/anaconda3/envs/dl/bin/python'
 vim.opt.guicursor = "n:hor100,i:ver25"
 
+-- vim.cmd([[colorscheme deus]])
+
 -- vim.cmd [[:highlight Cursor gui=NONE guifg=bg guibg=fg]]
+vim.cmd [[:highlight normal guibg=NONE]]
 -- :highlight Cursor gui=NONE guifg=bg guibg=fg
